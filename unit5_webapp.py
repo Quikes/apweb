@@ -1,14 +1,15 @@
 from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_heroku import Heroku
 import os
 import statistics
 
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///:memory:'
-app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://postgresql-shaped-97404')#'postgresql-shaped-97404' #'sqlite:///formdata.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'True'
-
+#app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://postgresql-shaped-97404')#'postgresql-shaped-97404' #'sqlite:///formdata.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'False'
+heroku = Heroku(app)
 db = SQLAlchemy(app)
 
 class Formdata(db.Model):
